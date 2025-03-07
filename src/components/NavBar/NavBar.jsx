@@ -4,10 +4,22 @@ import { assets } from '../../assets/assets/frontend_assets/assets'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext'
+import axios from 'axios'
 const NavBar = ({setShowLogin}) => {
 
     const[menu, setMenu] = useState('home')
-    const {getTotalCartAmount} = useContext(StoreContext)
+    const {getTotalCartAmount, token, setToken, url } = useContext(StoreContext)
+
+    // logout function
+    const logout = async () =>{
+            const response = await axios.get(`${url}api/user/logout`,{withCredentials:true})
+            if(response.data.success){
+            setToken("");
+            }
+            else{
+                alert("error")
+            }
+    }
   return (
     <div className='navbar'>
         <Link to='/'><img src={assets.logo} alt="" className="log" /></Link>
@@ -24,7 +36,20 @@ const NavBar = ({setShowLogin}) => {
                 {getTotalCartAmount() > 0?<div className="dot"></div>:<></>}
                 {/* <div className="dot"></div> */}
             </div>
-            <button onClick={()=>{setShowLogin(true)}}>sign in</button>
+            {!token? <button onClick={()=>{setShowLogin(true)}}>sign in</button>
+            :<div className='navbar-profile'>
+                <img src={assets.profile_icon} alt="" />
+                <ul className="navbar-profile-dropdown">
+                    <li><img src={assets.bag_icon} alt="" />
+                    <p>Orders</p>
+                    </li>
+                    <hr />
+                    <li onClick={()=>logout()}><img src={assets.logout_icon} alt="" />
+                    <p>Logout</p>
+                    </li>
+                </ul>
+                </div>}
+           
         </div>
     </div>
   )
