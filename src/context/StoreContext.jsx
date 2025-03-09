@@ -8,7 +8,7 @@ const StoreContextProvider = (props) => {
     const url = 'http://localhost:9000/'
     const [cartItems, setCartItems] = useState({})
     const [token, setToken] = useState("")
-    // console.log(cartItems)
+    const [food_list , setFoodList ] = useState([])
     const addToCart = (itemId)=>{
         //example how the code below works
 // const itemId = "apple";
@@ -51,16 +51,22 @@ const StoreContextProvider = (props) => {
         if(response.data.success){
         setToken(response.data.token);
         }
-        else{
-            alert("error")
-        }
     }
     catch(err){
         console.log(err)
     }
 }
+const fetchFoodList = async() =>{
+    const response =  await axios.get(`${url}api/food/list`);
+    console.log(response)
+    if(response.data.success){
+        setFoodList(response.data.foods);
+        console.log(food_list);
+    }
+}
 
 useEffect(()=>{
+    fetchFoodList();
     Validate();
 },[])
 
