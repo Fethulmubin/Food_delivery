@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
+import axios from 'axios'
 import { food_list } from '../assets/assets/frontend_assets/assets'
 export const StoreContext = createContext(null)
 
@@ -44,6 +45,25 @@ const StoreContextProvider = (props) => {
         }
         return totalAmount;
     }
+    const Validate = async () =>{
+        try{
+        const response = await axios.get(`${url}api/user/validate`,{withCredentials:true})
+        if(response.data.success){
+        setToken(response.data.token);
+        }
+        else{
+            alert("error")
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+useEffect(()=>{
+    Validate();
+},[])
+
     const contexValue = {
         url,
         food_list,
