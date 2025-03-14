@@ -21,6 +21,12 @@
     text-align: center;
     margin: 20px 0px;
     overflow-x: scroll;
+    padding-top: 7px;
+    
+}
+.explore-menu-list :hover{
+    transform: translateY(-3px);
+    transition: transform 0.3s ease-in-out;
 }
 .explore-menu-list::-webkit-scrollbar{
     display: none;
@@ -31,6 +37,7 @@
     cursor: pointer;
     border-radius: 50%;
     transition: 0.2s;
+    
 }
 .explore-menu-list-item p{
     margin-top: 10px;

@@ -9,7 +9,7 @@ const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({})
     const [token, setToken] = useState("")
     const [food_list , setFoodList ] = useState([])
-    const addToCart = (itemId)=>{
+    const addToCart = async (itemId)=>{
         //example how the code below works
 // const itemId = "apple";
 // const prev = { banana: 2 };
@@ -22,15 +22,19 @@ const StoreContextProvider = (props) => {
     else{
         setCartItems(prev=>({...prev,[itemId]:prev[itemId]+1}))
     }
-}
-    const removeFromCart = (itemId)=>{
-      setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
+    if(token){
+        const response = await axios.post(`${url}api/cart/add`, {itemId},{withCredentials:true})
+        console.log(response)
     }
-    // useEffect(()=>{
-    //     for (const item in cartItems){
-    //         console.log(item)
-    //     }
-    // },[cartItems])
+}
+
+    const removeFromCart = async (itemId)=>{
+      setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
+    
+    if(token){
+        await axios.post(`${url}api/cart/remove`, {itemId},{withCredentials:true})
+    }
+}
 
     const getTotalCartAmount = ()=>{
 
@@ -56,18 +60,29 @@ const StoreContextProvider = (props) => {
         console.log(err)
     }
 }
+//fetching food list for admin and front end
 const fetchFoodList = async() =>{
     const response =  await axios.get(`${url}api/food/list`);
-    console.log(response)
+    // console.log(response)
     if(response.data.success){
         setFoodList(response.data.foods);
-        console.log(food_list);
+        // console.log(food_list);
+    }
+}
+//losding cart data from users adding
+
+const loadCartData = async () =>{
+    const response = await axios.post(`${url}api/cart/get`,{}, {withCredentials:true})
+    console.log(response);
+    if(response.data.success){
+    setCartItems(response.data.cartData);
     }
 }
 
 useEffect(()=>{
     fetchFoodList();
     Validate();
+    loadCartData();
 },[])
 
     const contexValue = {
