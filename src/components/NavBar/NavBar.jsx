@@ -1,12 +1,13 @@
 import React,{useState} from 'react'
 import './NavBar.css' 
 import { assets } from '../../assets/assets/frontend_assets/assets'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 const NavBar = ({setShowLogin}) => {
 
+    const navigate = useNavigate();
     const[menu, setMenu] = useState('home')
     const {getTotalCartAmount, token, setToken, url } = useContext(StoreContext)
 
@@ -40,7 +41,7 @@ const NavBar = ({setShowLogin}) => {
             :<div className='navbar-profile'>
                 <img src={assets.profile_icon} alt="" />
                 <ul className="navbar-profile-dropdown">
-                    <li><img src={assets.bag_icon} alt="" />
+                    <li onClick={()=> navigate('/myorders')}><img src={assets.bag_icon} alt="" />
                     <p>Orders</p>
                     </li>
                     <hr />
