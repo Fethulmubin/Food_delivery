@@ -5,6 +5,8 @@ import { StoreContext } from '../../context/StoreContext'
 // import { Navigate } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Spinner from '../../components/Spinner/Spinner'
+
 
 const Verify = () => {
     const navigate = useNavigate();
@@ -28,9 +30,7 @@ const Verify = () => {
     },[])
   return (
     <div className='verify'>
-        <div className="spinner">
-
-        </div>
+        <Spinner/>
     </div>
   )
 }

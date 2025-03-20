@@ -36,6 +36,22 @@
     background-color: #ffe1e1;
     cursor: pointer;
 }
+.spinner{
+    width: 30px;
+    height: 30px;
+    margin-right: 65px;
+    place-self: center;
+    border: 5px solid #bdbdbd;
+    border-top-color: tomato ;
+    border-radius: 50%;
+    animation: rotate 1s infinite ;
+    }
+    @keyframes rotate{
+        100%{
+            transform : rotate(350deg)
+        }
+    }
+
 @media (max-width: 900px){
     .my-orders-order{
         grid-template-columns: 1fr 2fr 1fr;
