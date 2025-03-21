@@ -63,10 +63,8 @@ const StoreContextProvider = (props) => {
 //fetching food list for admin and front end
 const fetchFoodList = async() =>{
     const response =  await axios.get(`${url}api/food/list`);
-    // console.log(response)
     if(response.data.success){
         setFoodList(response.data.foods);
-        // console.log(food_list);
     }
 }
 //losding cart data from users adding

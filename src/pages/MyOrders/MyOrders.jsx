@@ -4,7 +4,7 @@ import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 import { useContext } from 'react'
 import { assets } from '../../assets/assets/frontend_assets/assets'
-// import { set } from 'mongoose'
+
 
 
 const MyOrders = () => {
@@ -22,8 +22,6 @@ const MyOrders = () => {
         if(response.data.success){
             setData(response.data.orders)
             setLoading(false);
-            // setChange(data)
-            // console.log(data)
         }
     }
 //fetching our orders

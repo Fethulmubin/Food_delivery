@@ -4,9 +4,8 @@ import {useContext} from 'react'
 import { StoreContext } from '../../context/StoreContext'
 import { assets } from '../../assets/assets/frontend_assets/assets'
 const FoodItem = ({id,name,price,description,image,catagory}) => {
-// const [itemCount, setItemCount] = useState(0)
 const{cartItems, addToCart,removeFromCart, url} = useContext(StoreContext)
-// console.log(cartItems);
+
   return (
     <div className='food-item'>
         <div className="food-item-img-container">

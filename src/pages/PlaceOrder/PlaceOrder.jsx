@@ -42,7 +42,7 @@ const PlaceOrder = () => {
         orderItems.push(itemInfo)
       }
     })
-    // console.log(orderItems);
+
     //we make ready to send data as all the required fields
     let orderData = {
       address: data,
