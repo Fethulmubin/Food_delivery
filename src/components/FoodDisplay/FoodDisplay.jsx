@@ -3,7 +3,7 @@ import './FoodDisplay.css'
 import {useContext} from 'react'
 import FoodItem from '../FoodItem/FoodItem'
 import { StoreContext } from '../../context/StoreContext'
-import Spinner from '../../../../admin/admin/src/components/Spinner/Spinner'
+import Spinner from '../Spinner/Spinner'
 const FoodDisplay = ({catagory}) => {
 
     const {food_list} = useContext(StoreContext)
