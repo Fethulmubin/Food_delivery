@@ -7,7 +7,7 @@ const ExploreMenu = ({catagory, setCatagory}) => {
     <div className='explore-menu' id='explore-menu'>
         <h1>Explore our menu</h1>
         <p className='explore-menu-text'>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        We offer a wide selection of mouth-watering dishes crafted to satisfy every craving. Whether you’re in the mood for something hearty or light, we’ve got you covered. Our meals are prepared daily to ensure top-notch quality and flavor. Enjoy a delightful dining experience every time you order.
         </p>
         <div className="explore-menu-list">
             {menu_list.map((item, index)=>{
